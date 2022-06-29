@@ -40,6 +40,10 @@ class LambdaScheduler:
         self.PureCacheHist = open(self.PureCacheFname, "w")
         self.PureCacheHist.write("time,used_mem,running_mem,pure_cache\n")
 
+        self.CumulativeFrequency = os.path.join(log_dir, fname+'container_cumulative_frequency.csv')
+        self.CumulativeFrequency = open(self.CumulativeFrequency, "w")
+        self.CumulativeFrequency.write("time,container_id,cur_cumul_freq\n")
+
         self.evdict = defaultdict(int)
         self.capacity_misses = defaultdict(int)
         self.TTL = 10 * 60 * 1000  # 10 minutes in ms
@@ -57,18 +61,21 @@ class LambdaScheduler:
     ##############################################################
 
     def WriteMemLog(self, reason, wall_time, mem_used, mem_size, extra="N/A"):
+        return
         msg = "{},{},{},{},{}\n".format(wall_time, reason, mem_used, mem_size, str(extra))
         self.MemUsageHist.write(msg)
 
     ##############################################################
 
     def WritePerfLog(self, d:LambdaData, time, meta):
+        return
         msg = "{},{},{}\n".format(d.kind, time, meta)
         self.PerformanceLog.write(msg)
 
     ##############################################################
 
     def WritePureCacheHist(self, time):
+        return
         # time, used_mem, running_mem, pure_cache
         running_mem = sum([k.metadata.mem_size for k in self.running_c.keys()])
         pure_cache = self.mem_used - running_mem
@@ -462,7 +469,7 @@ class LambdaScheduler:
         if not self.checkfree(c) : #due to space constraints
             #print("Eviction needed ", d.mem_size, self.mem_used)
             evicted = self.Eviction(d) #Is a list. also terminates the containers?
-
+            [victim.terminate() for victim in evicted]
         added = self.AddToPool(c)
         if not added:
             # print("Could not add even after evicting. FATAL ERROR")
@@ -530,7 +537,8 @@ class LambdaScheduler:
             processing_time = d.warm_time # d.run_time - d.warm_time
             self.running_c[c] = (t, t+processing_time)
             self.WritePerfLog(d, t, "hit")
-
+        msg = "{},{},{}\n".format(self.wall_time, id(c), c.frequency-1)
+        self.CumulativeFrequency.write(msg)
         #update the priority here!!
         c.last_access_t = self.wall_time
         new_prio = self.calc_priority(c) #, update=True)
