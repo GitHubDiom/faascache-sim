@@ -73,11 +73,11 @@ def run_multiple_expts(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run FaasCache Simulation')
-    parser.add_argument("--tracedir", type=str, default="/data2/alfuerst/azure/functions/trace_pckl/represent/", required=False)
-    parser.add_argument("--numfuncs", type=int, default=392, required=False)
-    parser.add_argument("--savedir", type=str, default="/data2/alfuerst/verify-test/", required=False)
-    parser.add_argument("--logdir", type=str, default="/data2/alfuerst/verify-test/logs/", required=False)
-    parser.add_argument("--memstep", type=int, default=3000, required=False)
+    parser.add_argument("--tracedir", type=str, default="/data/jairwu/data/azure/functions/trace_pckl/represent/", required=False)
+    parser.add_argument("--numfuncs", type=int, default=500, required=False)
+    parser.add_argument("--savedir", type=str, default="/home/jairwu/resources/FaaS/simulators/faascache-sim/verify-test/", required=False)
+    parser.add_argument("--logdir", type=str, default="/home/jairwu/resources/FaaS/simulators/faascache-sim/verify-test/logs/", required=False)
+    parser.add_argument("--memstep", type=int, default=5000, required=False)
     args = parser.parse_args()
     if not os.path.exists(args.savedir):
         os.makedirs(args.savedir)

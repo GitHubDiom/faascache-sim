@@ -8,7 +8,7 @@ plot.rc('font', size=14)
 
 figsize = (5.5,3.6) # (6.4, 4.8)
 
-datapath = "/data2/alfuerst/azure/functions"
+datapath = "/data/jairwu/data/azure/functions"
 fnames = "invocations_per_function_md.anon.d{0:02d}.csv"
 trigger = "http"
 timer = "timer"

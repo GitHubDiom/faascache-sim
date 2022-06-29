@@ -5,16 +5,19 @@
 #numfuncs=392
 #savedir='/data2/alfuerst/verify-test'
 #tracedir='/data2/alfuerst/azure/functions/trace_pckl/represent'
-trace_dir="/data2/alfuerst/azure/functions/trace_pckl/precombined"
-trace_output_dir="/data2/alfuerst/verify-test"
+trace_dir="/data/jairwu/data/azure/functions/trace_pckl/precombined"
+trace_output_dir="/home/jairwu/resources/FaaS/simulators/faascache-sim/verify-test"
 log_dir="$trace_output_dir/logs"
 memory_dir="$trace_output_dir/memory"
 analyzed_dir="$trace_output_dir/analyzed"
-plot_dir="/home/alfuerst/repos/faas-keepalive-20/code/split/figs/test/"
-num_funcs=392
+plot_dir="/home/jairwu/resources/FaaS/simulators/faascache-sim/code/split/figs/test/"
+num_funcs=200
 
+# create if necessary
+mkdir -p $analyzed_dir
+mkdir -p $plot_dir
 # paper used 500 simulation, but 3000 is used here for faster results
-memstep=3000
+memstep=5000
 
 # download trace
 

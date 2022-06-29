@@ -5,11 +5,11 @@ from LambdaData import *
 import pickle
 from math import ceil
 
-save_dir = "/extra/alfuerst/azure/functions/trace_pckl/represent/"
-store = "/extra/alfuerst/azure/functions/trace_pckl/"
+save_dir = "/data/jairwu/data/azure/functions/trace_pckl/represent/"
+store = "/data/jairwu/data/azure/functions/trace_pckl/"
 buckets = [str(i) for i in range(1, 1441)]
 
-datapath = "/extra/alfuerst/azure/functions/"
+datapath = "/data/jairwu/data/azure/functions/"
 durations = "function_durations_percentiles.anon.d01.csv"
 invocations = "invocations_per_function_md.anon.d01.csv"
 mem_fnames = "app_memory_percentiles.anon.d01.csv"

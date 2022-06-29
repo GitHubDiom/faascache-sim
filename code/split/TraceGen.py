@@ -53,7 +53,7 @@ class LambdaTrace:
         return self.lambdas, out_trace 
 
 class AzureTrace (LambdaTrace):
-    store = "/data2/alfuerst/azure/functions/trace_pckl/"
+    store = "/data/jairwu/data/azure/functions/trace_pckl/"
 
     # datapath = "/data2/alfuerst/azure/functions/"
     # durations = "function_durations_percentiles.anon.d{0:02d}.csv"
@@ -158,12 +158,13 @@ class PlannedTrace (LambdaTrace):
 
 if __name__ == "__main__":
     import pickle
-    save_pth = "/data2/alfuerst/azure/functions/trace_pckl/precombined"
+    save_pth = "/data/jairwu/data/azure/functions/trace_pckl/precombined"
     trace = AzureTrace()
     num_funcs = [10, 20, 50, 100, 200, 500, 1000, 10000] #, 20000, None]
     for size in num_funcs:
         for letter in ["a", "b", "c", "d", "e"]:
             pth = os.path.join(save_pth, str(size)+"-"+letter+".pckl")
+            print(pth)
             if not os.path.exists(pth):
                 t = trace.gen_full_trace(size, sample_seed=None)  
                 with open(pth, "w+b") as f:

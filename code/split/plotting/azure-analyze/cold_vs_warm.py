@@ -13,7 +13,7 @@ def save_plot(path):
         os.remove(path)
     plot.savefig(path, bbox_inches="tight")
 
-datapath = "/extra/alfuerst/azure/functions/"
+datapath = "/data/jairwu/data/azure/functions/"
 fnames = "function_durations_percentiles.anon.d{0:02d}.csv"
 columns = ["HashOwner","HashApp","HashFunction","Average", "Count", "Minimum", "Maximum", "percentile_Average_0", "percentile_Average_1", "percentile_Average_25", "percentile_Average_50", "percentile_Average_75", "percentile_Average_99", "percentile_Average_100"]
 

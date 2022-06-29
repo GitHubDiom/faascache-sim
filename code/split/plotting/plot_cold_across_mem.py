@@ -110,7 +110,7 @@ def plot_all(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='plot FaasCache Simulation')
-    parser.add_argument("--analyzeddir", type=str, default="/data2/alfuerst/verify-test/analyzed", required=False)
+    parser.add_argument("--analyzeddir", type=str, default="/home/jairwu/resources/FaaS/simulators/faascache-sim/verify-test/analyzed", required=False)
     parser.add_argument("--plotdir", type=str, default="../figs/increase_with_mem/", required=False)
     parser.add_argument("--numfuncs", type=int, default=392, required=False)
     args = parser.parse_args()
