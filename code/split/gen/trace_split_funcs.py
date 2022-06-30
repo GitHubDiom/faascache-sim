@@ -1,4 +1,5 @@
-import os
+import os, sys
+sys.path.append("../") 
 import pandas as pd
 from multiprocessing import Pool
 from LambdaData import *

@@ -54,7 +54,7 @@ def compare_pols(policy, num_functions, char, mem_capacity=32000, args=None):
 
 def run_multiple_expts(args):
     policies = ["GD", "TTL", "LRU", "LND", "HIST", "FREQ", "SIZE"]
-    mems = [i for i in range(1000, 80000, args.memstep)]
+    mems = [i for i in range(1000, 40001, args.memstep)]
     mems = set(mems)
     results = []
     print(len(policies) * len(mems))
